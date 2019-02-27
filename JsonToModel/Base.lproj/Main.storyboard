@@ -855,6 +855,17 @@
                                             <action selector="openModelFileBtn:" target="XfG-lQ-9wD" id="2Nz-nZ-1qJ"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dzg-qT-csR">
+                                        <rect key="frame" x="226" y="1" width="147" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="通过数据源转模型" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c3R-QP-OtE">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="zzT-Bg-TGG" kind="modal" id="y9S-Av-cmr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="598" id="fnv-OF-Ktf"/>
@@ -883,7 +894,205 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="OQ7-r3-Qir"/>
             </objects>
-            <point key="canvasLocation" x="124" y="682"/>
+            <point key="canvasLocation" x="144" y="733"/>
+        </scene>
+        <!--Model Data Source View Controller-->
+        <scene sceneID="VsL-Py-NPX">
+            <objects>
+                <viewController id="zzT-Bg-TGG" customClass="ModelDataSourceViewController" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="qWQ-SN-UYe">
+                        <rect key="frame" x="0.0" y="0.0" width="598" height="406"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf6-fB-6md">
+                                <rect key="frame" x="18" y="118" width="97" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="文件存储地址：" id="4qU-E0-2Oe">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMg-Rc-sMe">
+                                <rect key="frame" x="127" y="143" width="451" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" id="J7v-jy-efS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jgj-uk-7hq">
+                                <rect key="frame" x="18" y="79" width="49" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="KVC" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zXf-g4-Xgk">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickKVCBtn:" target="zzT-Bg-TGG" id="146-p4-qQp"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-vW-GaO">
+                                <rect key="frame" x="87" y="79" width="75" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="JSModel" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rtV-9f-FYA">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickJSModelBtn:" target="zzT-Bg-TGG" id="aSM-st-f3A"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHS-qm-1Gu">
+                                <rect key="frame" x="177" y="79" width="49" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="其他" bezelStyle="regularSquare" imagePosition="left" inset="2" id="kGZ-ZK-cF4">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickOtherBtn:" target="zzT-Bg-TGG" id="zZT-IU-Qh4"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwz-We-5Vc">
+                                <rect key="frame" x="18" y="377" width="58" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="数据源：" id="h5F-Av-dUp">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCz-6d-MCH">
+                                <rect key="frame" x="250" y="70" width="136" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="push" title="创建模型文件" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WWO-d4-enI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="beginCreatModelFileBtn:" target="zzT-Bg-TGG" id="DTM-qX-hsb"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PYV-VH-CQY">
+                                <rect key="frame" x="18" y="143" width="84" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="模型头名称：" id="tiG-Oh-KUq">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oxq-TQ-hFc">
+                                <rect key="frame" x="219" y="3" width="160" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="push" title="通过数据接口转模型" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C3F-Ck-E6C">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="XfG-lQ-9wD" kind="modal" id="VVV-mA-lsY"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DFc-Lb-Apd">
+                                <rect key="frame" x="223" y="41" width="156" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="NSNumber转NSString" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="HMZ-Jy-7ca">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickNumBtn:" target="zzT-Bg-TGG" id="v6Z-2U-IqX"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2KS-s0-ogT">
+                                <rect key="frame" x="18" y="41" width="168" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="NSNULL转换成NSString" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="62H-7o-CBG">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickNullBtn:" target="zzT-Bg-TGG" id="2MV-mM-RmW"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4Z-on-D8r">
+                                <rect key="frame" x="444" y="41" width="136" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="NSDate转NSString" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="eHT-0w-j8j">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickDateBtn:" target="zzT-Bg-TGG" id="iiE-dc-Fk8"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wd0-jb-ydM">
+                                <rect key="frame" x="127" y="116" width="451" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" id="39O-Gh-lMQ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <scrollView appearanceType="aqua" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDp-DX-WBP">
+                                <rect key="frame" x="92" y="173" width="486" height="221"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="mAJ-a0-IRW">
+                                    <rect key="frame" x="0.0" y="0.0" width="486" height="221"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" verticallyResizable="YES" usesFontPanel="YES" usesInspectorBar="YES" findStyle="bar" allowsDocumentBackgroundColorChange="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0Z3-Vz-4z8">
+                                            <rect key="frame" x="0.0" y="0.0" width="486" height="221"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="486" height="221"/>
+                                            <size key="maxSize" width="486" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="zU0-NA-XWb">
+                                    <rect key="frame" x="470" y="0.0" width="16" height="221"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-D3-HKf">
+                                <rect key="frame" x="403" y="72" width="175" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hoi-I0-Vb2">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openModelFileBtn:" target="zzT-Bg-TGG" id="j9S-p3-zdo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="JSModelBtn" destination="wFs-vW-GaO" id="cyZ-W1-o2d"/>
+                        <outlet property="KVCBtn" destination="jgj-uk-7hq" id="KHZ-aX-mgP"/>
+                        <outlet property="dataSourceTextV" destination="0Z3-Vz-4z8" id="EZv-de-IFf"/>
+                        <outlet property="dateToStrBtn" destination="L4Z-on-D8r" id="a9a-hQ-MP7"/>
+                        <outlet property="modelNameTF" destination="xMg-Rc-sMe" id="wca-tD-NIV"/>
+                        <outlet property="nullToStrBtn" destination="2KS-s0-ogT" id="PUY-dF-cNl"/>
+                        <outlet property="numToStrBtn" destination="DFc-Lb-Apd" id="Mow-0a-YQG"/>
+                        <outlet property="otherBtn" destination="NHS-qm-1Gu" id="uTX-px-YXW"/>
+                        <outlet property="resultsBnt" destination="zbb-D3-HKf" id="CBv-rW-lgD"/>
+                        <outlet property="savePathTF" destination="Wd0-jb-ydM" id="H8H-wu-Z96"/>
+                    </connections>
+                </viewController>
+                <customObject id="Wo3-Nr-bJE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="GVv-tn-ppU"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="749"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VVV-mA-lsY"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -96,22 +96,22 @@
 - (void)auto_creat{
     
     if(self.urlPathTF.stringValue.length==0){
-        [self.resultsBnt setTitle:@"网址不能为空"];
+        self.resultsBnt.title = @"网址不能为空";
         return;
     }
     if([self judgURL:self.urlPathTF.stringValue]==NO){
-        [self.resultsBnt setTitle:@"网址存在%?控制符"];
+        self.resultsBnt.title = @"网址存在%?控制符";
         return;
     }
     if(self.modelNameTF.stringValue.length==0){
-        [self.resultsBnt setTitle:@"请输入数据模型名"];
+        self.resultsBnt.title = @"请输入数据模型名";
         return;
     }
     //判断保存路径是否存在
     if(self.savePathTF.stringValue.length>0){
         //判断用户是否直接保存到了桌面
         if([self.savePathTF.stringValue isEqualToString:[NSHomeDirectory() stringByAppendingString:@"/Desktop/"]]||[self.savePathTF.stringValue isEqualToString:[NSHomeDirectory() stringByAppendingString:@"/Desktop"]]){
-            [self.resultsBnt setTitle:@"请不要文件直接存在桌面上"];
+            self.resultsBnt.title = @"请不要文件直接存在桌面上";
             return;
         }
         if([self.savePathTF.stringValue hasSuffix:@"/"]==NO){
@@ -120,7 +120,7 @@
         }
         [self requstDataWithUrlPath];//请求数据
     }else {
-        [self.resultsBnt setTitle:@"保存路径不能为空"];
+        self.resultsBnt.title = @"保存路径不能为空";
     }
 }
 #pragma mark - 移除数据
@@ -164,13 +164,13 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             self.dict = responseObject;
             if (self.dict == nil) {
-                [self.resultsBnt setTitle:@"请求的网路数据有误"];
+                self.resultsBnt.title = @"请求的网路数据有误";
                 return ;
             }
         }else if ([responseObject isKindOfClass:[NSArray class]]) {
             self.arr = responseObject;
             if (self.arr == nil) {
-                [self.resultsBnt setTitle:@"请求的网路数据有误"];
+                self.resultsBnt.title = @"请求的网路数据有误";
                 return ;
             }
         }
@@ -179,7 +179,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        [self.resultsBnt setTitle:@"请检查网址"];
+        self.resultsBnt.title = @"请检查网址";
         
         NSLog(@"error ====== %@",error);
         
@@ -194,16 +194,17 @@
         [self deleteOldDirectory];
         //分析数据结构创建模型文件
         [CreatPropert creatProperty:self.dict fileName:self.modelNameTF.stringValue WithContext:@"" savePath:self.savePathTF.stringValue withNSNULL:self.nullToStrBtn.state withNSDATE:self.dateToStrBtn.state withNSNUMBER:self.numToStrBtn.state withGiveData:[self returnNSInteger] withModelName:self.modelNameTF.stringValue];
-        [self.resultsBnt setTitle:@"生成成功,打开文件夹"];
+        self.resultsBnt.title = @"生成成功,打开文件夹";
         [self JsonToPlistWithFilePath:self.filePath withURL:self.urlPathTF.stringValue];
     }else if (_arr != nil) {
         //删除原先的文件夹
         [self deleteOldDirectory];
         //分析数据结构创建模型文件
         [CreatPropert creatProperty:self.arr fileName:self.modelNameTF.stringValue WithContext:@"" savePath:self.savePathTF.stringValue withNSNULL:self.nullToStrBtn.state withNSDATE:self.dateToStrBtn.state withNSNUMBER:self.numToStrBtn.state withGiveData:[self returnNSInteger] withModelName:self.modelNameTF.stringValue];
-        [self.resultsBnt setTitle:@"生成成功,打开文件夹"];
+        self.resultsBnt.title = @"生成成功,打开文件夹";
         [self JsonToPlistWithFilePath:self.filePath withURL:self.urlPathTF.stringValue];
-    }else [self.resultsBnt setTitle:@"生成失败"];
+    }else self.resultsBnt.title = @"生成失败";
+    
 }
 
 #pragma mark - 删除原先的文件夹

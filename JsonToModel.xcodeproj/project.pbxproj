@@ -17,6 +17,7 @@
 		6A023F3321C35E2500143717 /* JsonToModelUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A023F3221C35E2500143717 /* JsonToModelUITests.m */; };
 		6A023F4321C3A22300143717 /* CreatPropert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A023F4221C3A22300143717 /* CreatPropert.m */; };
 		6A023F4621C3A2A400143717 /* KVCPropert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A023F4521C3A2A400143717 /* KVCPropert.m */; };
+		6A6B9DFB222669EF0097819A /* ModelDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6B9DFA222669EF0097819A /* ModelDataSourceViewController.m */; };
 		6A727A8D21C734FC0045F8FF /* JSModelPropert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A727A8C21C734FC0045F8FF /* JSModelPropert.m */; };
 		6A727A9021C784200045F8FF /* PropertType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A727A8F21C784200045F8FF /* PropertType.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,8 @@
 		6A023F4221C3A22300143717 /* CreatPropert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatPropert.m; sourceTree = "<group>"; };
 		6A023F4421C3A2A400143717 /* KVCPropert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCPropert.h; sourceTree = "<group>"; };
 		6A023F4521C3A2A400143717 /* KVCPropert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCPropert.m; sourceTree = "<group>"; };
+		6A6B9DF9222669EF0097819A /* ModelDataSourceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelDataSourceViewController.h; sourceTree = "<group>"; };
+		6A6B9DFA222669EF0097819A /* ModelDataSourceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelDataSourceViewController.m; sourceTree = "<group>"; };
 		6A727A8B21C734FC0045F8FF /* JSModelPropert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSModelPropert.h; sourceTree = "<group>"; };
 		6A727A8C21C734FC0045F8FF /* JSModelPropert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSModelPropert.m; sourceTree = "<group>"; };
 		6A727A8E21C784200045F8FF /* PropertType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertType.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				6A023F1121C35E2300143717 /* AppDelegate.m */,
 				6A023F1321C35E2300143717 /* ViewController.h */,
 				6A023F1421C35E2300143717 /* ViewController.m */,
+				6A6B9DF9222669EF0097819A /* ModelDataSourceViewController.h */,
+				6A6B9DFA222669EF0097819A /* ModelDataSourceViewController.m */,
 				6A023F1621C35E2500143717 /* Assets.xcassets */,
 				6A023F1821C35E2500143717 /* Main.storyboard */,
 				6A023F1B21C35E2500143717 /* Info.plist */,
@@ -344,6 +349,7 @@
 				6A023F1521C35E2300143717 /* ViewController.m in Sources */,
 				6A023F1D21C35E2500143717 /* main.m in Sources */,
 				6A023F1221C35E2300143717 /* AppDelegate.m in Sources */,
+				6A6B9DFB222669EF0097819A /* ModelDataSourceViewController.m in Sources */,
 				6A727A9021C784200045F8FF /* PropertType.m in Sources */,
 				6A727A8D21C734FC0045F8FF /* JSModelPropert.m in Sources */,
 			);
