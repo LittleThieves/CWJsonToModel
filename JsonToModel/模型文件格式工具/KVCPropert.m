@@ -34,20 +34,22 @@ int judge(const char *p) {
 #pragma mark - KVC辅助函数 - 属性声明
 //可变数组类型属性
 + (void)myNSMutableArray:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSMutableArray * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSMutableArray *"];
     [StrM appendString:@"my"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
     
 }
 //可变字典类型属性
 + (void)myNSMutableDictionary:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM withModelName:(NSString *)modelName {
+    [StrM appendString:@"///注释\n"];
     [StrM appendString:@"@property (nonatomic, strong) "];
-    [StrM appendString:[NSString stringWithFormat:@"%@%@Model * ",modelName,tempStr]];
+    [StrM appendString:[NSString stringWithFormat:@"%@%@Model *",modelName,tempStr]];
     [StrM appendString:@"my"];
     [StrM appendString:tempStr];
     [StrM appendString:@"Model"];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 #pragma mark - KVC辅助函数 - 属性赋值方法实现
 //实现懒加载可变对象
@@ -58,7 +60,7 @@ int judge(const char *p) {
     [StrM appendString:name];
     [StrM appendString:@"){\n\t\t_my"];
     [StrM appendString:name];
-    [StrM appendString:@"=[[NSMutableArray new];\n\t}\n\treturn _my"];
+    [StrM appendString:@"=[NSMutableArray new];\n\t}\n\treturn _my"];
     [StrM appendString:name];
     [StrM appendString:@";\n}\n\n"];
 }
@@ -69,7 +71,7 @@ int judge(const char *p) {
     [StrM appendString:name];
     [StrM appendString:@"){\n\t\t_my"];
     [StrM appendString:name];
-    [StrM appendString:@"=[[NSMutableDictionary new];\n\t}\n\treturn _my"];
+    [StrM appendString:@"=[NSMutableDictionary new];\n\t}\n\treturn _my"];
     [StrM appendString:name];
     [StrM appendString:@";\n}\n\n"];
 }

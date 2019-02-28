@@ -33,28 +33,31 @@ int judgex(const char *p) {
 #pragma mark - 辅助函数JSONModel - 属性声明
 + (void)myNSMutableArrayJSONModelToNSMutableString:(NSMutableString *)StrM withArrNames:(NSArray *)arrNames withArrSpecialNames:(NSArray *)arrSpecialNames withModelName:(NSString *)modelName {
     for (NSString *tempStr in arrNames) {
+        [StrM appendString:@"///注释\n"];
         [StrM appendString:@"@property (nonatomic, strong) NSMutableArray <"];
         [StrM appendString:modelName];
         [StrM appendString:CapitalStr(tempStr)];
         [StrM appendString:@"Model"];
-        [StrM appendString:@"> * my"];
+        [StrM appendString:@"> *my"];
         [StrM appendString:PropertyArr(CapitalStr(tempStr))];
-        [StrM appendString:@";//注释\n"];
+        [StrM appendString:@";\n"];
     }
     for (NSString *tempStr in arrSpecialNames) {
-        [StrM appendString:@"@property (nonatomic, strong) NSArray * "];
+        [StrM appendString:@"///注释\n"];
+        [StrM appendString:@"@property (nonatomic, strong) NSArray *"];
         [StrM appendString:PropertyArr(tempStr)];
-        [StrM appendString:@";//注释\n"];
+        [StrM appendString:@";\n"];
     }
 }
 + (void)myNSMutableDictionaryJSONModel:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM withModelName:(NSString *)modelName {
+    [StrM appendString:@"///注释\n"];
     [StrM appendString:@"@property (nonatomic, strong) NSMutableDictionary <"];
     [StrM appendString:modelName];
     [StrM appendString:tempStr];
     [StrM appendString:@"Model"];
-    [StrM appendString:@"> * my"];
+    [StrM appendString:@"> *my"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 
 #pragma mark - KVC辅助函数 - 属性赋值方法实现声明

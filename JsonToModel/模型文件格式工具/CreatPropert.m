@@ -21,51 +21,59 @@ typedef NS_ENUM(NSInteger, AssignmentToolType) {
 #pragma mark - 基础属性声明方法
 //存储二进制数据属性
 + (void)myNSData:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSData * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSData *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //时间类型属性
 + (void)myNSDate:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSDate * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSDate *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //字符串类型属性
 + (void)myNSString:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, copy) NSString * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, copy) NSString *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //空类型属性
 + (void)myNSNull:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSNull * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSNull *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //整型类型属性
 + (void)myNSNumberInt:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
+    [StrM appendString:@"///注释\n"];
     [StrM appendString:@"@property (nonatomic, assign) NSInteger "];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //浮点型类型属性
 + (void)myNSNumberFloat:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
+    [StrM appendString:@"///注释\n"];
     [StrM appendString:@"@property (nonatomic, assign) CGFloat "];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //数组类型属性
 + (void)myNSArray:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSArray * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSArray *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 //字典类型属性
 + (void)myNSDictionary:(NSString *)tempStr ToNSMutableString:(NSMutableString *)StrM {
-    [StrM appendString:@"@property (nonatomic, strong) NSDictionary * "];
+    [StrM appendString:@"///注释\n"];
+    [StrM appendString:@"@property (nonatomic, strong) NSDictionary *"];
     [StrM appendString:tempStr];
-    [StrM appendString:@";//注释\n"];
+    [StrM appendString:@";\n"];
 }
 
 #pragma mark - 构建属性和属性赋值方法的方法
