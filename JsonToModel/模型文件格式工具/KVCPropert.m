@@ -144,17 +144,20 @@ int judge(const char *p) {
     [StrM appendString:@"}\n\n"];
 }
 #pragma mark - (void)setValue:(id)value forKey:(NSString *)key
-+ (void)setValueForKeyToNSMutableString:(NSMutableString *)StrM withNSNUMBER:(BOOL)NSNUMBER{
-    
++ (void)setValueForKeyToNSMutableString:(NSMutableString *)StrM withNSNUMBER:(BOOL)NSNUMBER withObjNULL:(BOOL)objNull {
     [StrM appendString:@"//设置属性名为key的属性的值为value\n"];
     [StrM appendString:@"- (void)setValue:(id)value forKey:(NSString *)key {\n"];
     
-    if(NSNUMBER==YES){
+    if(NSNUMBER == YES){
         [StrM appendString:@"\tif ([value isKindOfClass:[NSNumber class]]) {\n"];
-        [StrM appendString:@"\t\t[self setValue:[NSString stringWithFormat:@\"%@\",value] forKey:key];\n\t}else{\n"];
-        [StrM appendString:@"\t\t[super setValue:value forKey:key];\n\t}\n"];
+        [StrM appendString:@"\t\t[self setValue:[NSString stringWithFormat:@\"%@\",value] forKey:key];\n\t}"];
     }
-    
+    if(objNull == YES){
+        [StrM appendString:@"else if ([value isKindOfClass:[NSNull class]] || value == null) {\n"];
+        [StrM appendString:@"\t\t[self setValue:@\"\" forKey:key];\n\t}"];
+    }
+    [StrM appendString:@"else {\n"];
+    [StrM appendString:@"\t\t[super setValue:value forKey:key];\n\t}\n"];
     [StrM appendString:@"}\n\n"];
 }
 #pragma mark - (id)valueForUndefinedKey:(NSString *)key
@@ -178,7 +181,7 @@ int judge(const char *p) {
     if(![fileName isEqualToString:modelName]){
         
         fileName = [modelName stringByAppendingString:fileName];
-
+        
     }
     
     if ([obj isKindOfClass:[NSDictionary class]]) {//如果obj对象是字典
@@ -203,7 +206,7 @@ int judge(const char *p) {
                     [self myNSArray:PropertyArr(objTemp) ToNSMutableString:propertyStr];
                     
                 }
-
+                
                 NSString *tempFileName = CapitalStr(objTemp);
                 
                 [self creatProperty:obj[objTemp] fileName:tempFileName WithContext:tempFileName savePath:savePath withNSNULL:isNULL withNSDATE:isDATE withNSNUMBER:isNUMBER withGiveData:category withModelName:modelName];
@@ -236,7 +239,7 @@ int judge(const char *p) {
                         default:
                             break;
                     }
-            
+                    
                 }else{//NSNumber转字符串对象
                     [pType.strProp addObject:objTemp];
                     [self myNSString:objTemp ToNSMutableString:propertyStr];
@@ -252,9 +255,9 @@ int judge(const char *p) {
                     [pType.strProp addObject:objTemp];
                     [self myNSString:objTemp ToNSMutableString:propertyStr];
                 }
-
+                
             }else if ([obj[objTemp] isKindOfClass:[NSNull class]]) {//如果字典里面是NSNull
-            
+                
                 if(!isNULL){//NSNull不转字符串对象
                     //这里需要注意,假如文本里面是空,可能会被当做成NSNull
                     [pType.nullProp addObject:objTemp];
@@ -287,11 +290,11 @@ int judge(const char *p) {
         
     }
     //调用创建模型文件方法
-    [self createAPropertiesFileAtSavePath:savePath withFileName:fileName withPropertyStr:propertyStr withPType:pType withModelName:modelName withNSNUMBER:isNUMBER];
+    [self createAPropertiesFileAtSavePath:savePath withFileName:fileName withPropertyStr:propertyStr withPType:pType withModelName:modelName withNSNUMBER:isNUMBER withObjNULL:isNULL];
     
 }
 #pragma mark - 创建模型文件
-+ (void)createAPropertiesFileAtSavePath:(NSString *)savePath withFileName:(NSString *)fileName withPropertyStr:(NSString *)propertyStr withPType:(PropertType *)pType withModelName:(NSString *)modelName withNSNUMBER:(BOOL)isNUMBER {
++ (void)createAPropertiesFileAtSavePath:(NSString *)savePath withFileName:(NSString *)fileName withPropertyStr:(NSString *)propertyStr withPType:(PropertType *)pType withModelName:(NSString *)modelName withNSNUMBER:(BOOL)isNUMBER withObjNULL:(BOOL)objNull {
     
     NSString *path = savePath;
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
@@ -320,8 +323,8 @@ int judge(const char *p) {
                 [self initNSMutableArrayWithName:PropertyArr(CapitalStr(name)) ToNSMutableString:text];
             }
         }
-
-        [self setValueForKeyToNSMutableString:text withNSNUMBER:isNUMBER];
+        
+        [self setValueForKeyToNSMutableString:text withNSNUMBER:isNUMBER withObjNULL:objNull];
         
         [self setValueForUndefinedKeyToNSMutableString:text withArrNames:pType.arrMProp withDicNames:pType.dicMProp withArrSpecialName:pType.arrProp withModelName:modelName];
         

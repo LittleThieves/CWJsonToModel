@@ -203,7 +203,7 @@ typedef NS_ENUM(NSInteger, AssignmentToolType) {
 }
 
 #pragma mark - 编写引入的头文件
-+ (void)addModelHFileToNSMutableString:(NSMutableString *)StrM withArrNames:(NSArray *)arrNames withDicNames:(NSArray *)dicNames withModelName:(NSString *)modelName {
++ (void)addModelHFileToNSMutableString:(NSMutableString *)StrM withArrNames:(nullable NSArray *)arrNames withDicNames:(nullable NSArray *)dicNames withModelName:(NSString *)modelName {
     
     if (arrNames.count > 0) {
         for (NSString *name in arrNames) {

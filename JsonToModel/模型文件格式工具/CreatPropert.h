@@ -61,8 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 编写引入的头文件
 + (void)addModelHFileToNSMutableString:(NSMutableString *)StrM
-                          withArrNames:(NSArray *)arrNames
-                          withDicNames:(NSArray *)dicNames
+                          withArrNames:(nullable NSArray *)arrNames
+                          withDicNames:(nullable NSArray *)dicNames
                          withModelName:(NSString *)modelName;
 
 

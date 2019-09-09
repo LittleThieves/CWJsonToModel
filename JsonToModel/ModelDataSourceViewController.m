@@ -168,13 +168,13 @@
     if ([responseObject isKindOfClass:[NSDictionary class]]) {
         self.dict = responseObject;
         if (self.dict == nil) {
-            [self.resultsBnt setTitle:@"请求的网路数据有误"];
+            [self.resultsBnt setTitle:@"输入的数据有误"];
             return ;
         }
     }else if ([responseObject isKindOfClass:[NSArray class]]) {
         self.arr = responseObject;
         if (self.arr == nil) {
-            [self.resultsBnt setTitle:@"请求的网路数据有误"];
+            [self.resultsBnt setTitle:@"输入的数据有误"];
             return ;
         }
     }
