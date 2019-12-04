@@ -153,7 +153,7 @@ int judge(const char *p) {
         [StrM appendString:@"\t\t[self setValue:[NSString stringWithFormat:@\"%@\",value] forKey:key];\n\t}"];
     }
     if(objNull == YES){
-        [StrM appendString:@"else if ([value isKindOfClass:[NSNull class]] || value == null) {\n"];
+        [StrM appendString:@"else if ([value isKindOfClass:[NSNull class]] || value == nil) {\n"];
         [StrM appendString:@"\t\t[self setValue:@\"\" forKey:key];\n\t}"];
     }
     [StrM appendString:@"else {\n"];

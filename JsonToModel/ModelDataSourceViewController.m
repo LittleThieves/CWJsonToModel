@@ -36,9 +36,6 @@
 @property (nonatomic, strong)NSDictionary *dict;
 @property (nonatomic, strong)NSArray *arr;
 
-@property (nonatomic,copy)NSString *filePath;//文件路径
-
-
 @end
 
 @implementation ModelDataSourceViewController
@@ -49,10 +46,10 @@
     // Do any additional setup after loading the view.
     self.title = @"数据源转模型界面";
     //加载一些初始化数据
-    NSString *HomePath=NSHomeDirectory();
-    self.savePathTF.stringValue=[HomePath stringByAppendingString:@"/Desktop/MyModel/"];
-    self.arr=[NSArray new];
-    self.dict=[NSDictionary new];
+    NSString *HomePath = NSHomeDirectory();
+    self.savePathTF.stringValue = [HomePath stringByAppendingString:@"/Desktop/MyModel/"];
+    self.arr = [NSArray new];
+    self.dict = [NSDictionary new];
 }
 
 #pragma mark - 采用KVC模式
@@ -101,7 +98,6 @@
 #pragma mark - 创建模型文件
 - (IBAction)beginCreatModelFileBtn:(NSButton *)sender {
     [self auto_creat];
-    self.filePath = [self.savePathTF.stringValue stringByAppendingString:[self.modelNameTF.stringValue stringByAppendingString:@".plist"]];
 }
 #pragma mark - 检查用户必填项是否填写
 - (void)auto_creat{
@@ -152,15 +148,20 @@
 - (id)jsonToObject:(NSString *)json{
     //string转data
     NSData * jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
     //json解析
-    id obj = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    id obj = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+    if(error) {
+        NSLog(@"json解析失败：%@",error);
+        return nil;
+    }
+    
     return obj;
 }
 
 #pragma mark - 发起请求
 - (void)requstDataWithUrlPath {
     [self removeData];//清空上一次请求的数据
-    
     NSLog(@"self.dataSourceTextV.string === %@",self.dataSourceTextV.string);
     
     id responseObject = [self jsonToObject:self.dataSourceTextV.string];
@@ -177,6 +178,9 @@
             [self.resultsBnt setTitle:@"输入的数据有误"];
             return ;
         }
+    }else {
+        [self.resultsBnt setTitle:@"输入的数据格式有误"];
+        return ;
     }
     
     [self requstSuccees];
@@ -185,20 +189,22 @@
 
 #pragma mark - 后端返回的数据成功
 - (void)requstSuccees {
+    NSString *plistfilePath = [self.savePathTF.stringValue stringByAppendingString:[self.modelNameTF.stringValue stringByAppendingString:@".plist"]];
     if (_dict != nil) {
         //删除原先的文件夹
         [self deleteOldDirectory];
         //分析数据结构创建模型文件
         [CreatPropert creatProperty:self.dict fileName:self.modelNameTF.stringValue WithContext:@"" savePath:self.savePathTF.stringValue withNSNULL:self.nullToStrBtn.state withNSDATE:self.dateToStrBtn.state withNSNUMBER:self.numToStrBtn.state withGiveData:[self returnNSInteger] withModelName:self.modelNameTF.stringValue];
         [self.resultsBnt setTitle:@"生成成功,打开文件夹"];
-        [self JsonToPlistWithFilePath:self.filePath withDataJsonStr:self.dataSourceTextV.string];
+        
+        [self JsonToPlistWithFilePath:plistfilePath withDataJsonStr:self.dataSourceTextV.string];
     }else if (_arr != nil) {
         //删除原先的文件夹
         [self deleteOldDirectory];
         //分析数据结构创建模型文件
         [CreatPropert creatProperty:self.arr fileName:self.modelNameTF.stringValue WithContext:@"" savePath:self.savePathTF.stringValue withNSNULL:self.nullToStrBtn.state withNSDATE:self.dateToStrBtn.state withNSNUMBER:self.numToStrBtn.state withGiveData:[self returnNSInteger] withModelName:self.modelNameTF.stringValue];
         [self.resultsBnt setTitle:@"生成成功,打开文件夹"];
-        [self JsonToPlistWithFilePath:self.filePath withDataJsonStr:self.dataSourceTextV.string];
+        [self JsonToPlistWithFilePath:plistfilePath withDataJsonStr:self.dataSourceTextV.string];
     }else [self.resultsBnt setTitle:@"生成失败"];
 }
 
@@ -213,21 +219,21 @@
 
 #pragma mark - 打开生成的模型文件夹
 - (void)JsonToPlistWithFilePath:(NSString *)FilepPath withDataJsonStr:(NSString *)dataJsonStr{
-    
     NSFileManager *fm=[NSFileManager defaultManager];
     [fm createFileAtPath:FilepPath contents:nil attributes:nil];
     if([fm fileExistsAtPath:FilepPath] && dataJsonStr.length>0){
         
-        id obj = [self jsonToObject:self.dataSourceTextV.string];
-
-        if([obj isKindOfClass:[NSMutableArray class]]){
-            NSMutableArray *arr=(NSMutableArray *)obj;
-            [arr writeToFile:FilepPath atomically:YES];
-        }else if([obj isKindOfClass:[NSMutableDictionary class]]){
-            NSMutableDictionary *dicM=(NSMutableDictionary *)obj;
-            [dicM writeToFile:FilepPath atomically:YES];
+        id obj = [self jsonToObject:dataJsonStr];
+        if (obj) {
+            if([obj isKindOfClass:[NSArray class]]){
+                NSArray *arr=(NSArray *)obj;
+                [arr writeToFile:FilepPath atomically:YES];
+            }else if([obj isKindOfClass:[NSDictionary class]]){
+                NSDictionary *dicM = (NSDictionary *)obj;
+                [dicM writeToFile:FilepPath atomically:YES];
+            }
+            system([[@"open " stringByAppendingString:FilepPath] UTF8String]);
         }
-        system([[@"open " stringByAppendingString:FilepPath] UTF8String]);
     }
     
 }

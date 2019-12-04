@@ -5,5 +5,4 @@ target "JsonToModel" do
     pod 'AFNetworking'
 
 
-
 end
